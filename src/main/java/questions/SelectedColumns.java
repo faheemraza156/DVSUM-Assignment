@@ -14,25 +14,19 @@ import static components.SelectedViewDatatable.SELECTED_COLUMNS;
 
 
 
-public class SelectedColumns implements Question<List<String>> {
+public class SelectedColumns {
 
-    public SelectedColumns(){}
-    public static SelectedColumns ofCurrentView() {
-        return Instrumented.instanceOf(SelectedColumns.class).withProperties();
-    }
+    public static Question<List<String>> ofCurrentView() {
+        return Question.about("Columns present in selected view").answeredBy(actor -> {
+            WebDriver driver = BrowseTheWeb.as(actor).getDriver();
+            JavascriptExecutor js = (JavascriptExecutor)driver;
 
-    @Override
-    public List<String> answeredBy(Actor actor) {
+            List<String> columnData = new ArrayList<>();
 
-        WebDriver driver = BrowseTheWeb.as(actor).getDriver();
-        JavascriptExecutor js = (JavascriptExecutor)driver;
-
-        List<String> columnData = new ArrayList<>();
-
-        SELECTED_COLUMNS.resolveAllFor(actor).forEach(item->{
-            columnData.add(js.executeScript("return arguments[0].innerText" , item).toString());
+            SELECTED_COLUMNS.resolveAllFor(actor).forEach(item->{
+                columnData.add(js.executeScript("return arguments[0].innerText" , item).toString());
+            });
+            return columnData;
         });
-
-        return columnData;
     }
 }

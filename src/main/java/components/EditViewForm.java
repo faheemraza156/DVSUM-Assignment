@@ -21,7 +21,7 @@ public class EditViewForm {
     public static Target AVAILABLE_COLUMN = Target.the("data available in column")
             .locatedBy("//ul[@id=\"availableColumns\"]/li/div/span[contains(text(),'{0}')]");
     public static Target SELECTED_COLUMN = Target.the("data moved to selected column")
-            .locatedBy("//ul[@id=\"selectedColumns\"]");
+            .locatedBy("//ul[@id='selectedColumns']");
     public static Target DESELECT_ALL_COLUMNS = Target.the("All columns deselected")
             .locatedBy("//div[@id=\"dbox_de_select_all\"]");
 

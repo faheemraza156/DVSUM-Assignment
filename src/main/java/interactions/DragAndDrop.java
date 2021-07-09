@@ -18,7 +18,7 @@ public class DragAndDrop implements Interaction {
     }
 
     public static DragAndDrop fromSource(Target source){
-        return Instrumented.instanceOf(DragAndDrop.class).withProperties(source);
+        return new DragAndDrop(source);
     }
 
     public DragAndDrop toTarget(Target target) {

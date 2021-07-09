@@ -6,5 +6,5 @@ Feature: Delete View
     Then The <view> should be deleted
 
     Examples:
-      |view|
-      |newviewedited|
+      | view    |
+      | newview |

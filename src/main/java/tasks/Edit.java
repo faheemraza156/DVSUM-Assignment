@@ -1,8 +1,12 @@
 package tasks;
 import interactions.Refresh;
 import net.serenitybdd.screenplay.Task;
+import net.serenitybdd.screenplay.questions.Text;
+import net.serenitybdd.screenplay.waits.Wait;
 
 import java.util.List;
+
+import static components.ColumnViewDropdown.SELECTED_VIEW_DROPDOWN;
 
 
 public class Edit {

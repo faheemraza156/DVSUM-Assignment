@@ -1,12 +1,13 @@
 package serenity.dvsum.steps;
 
+import interactions.EditWebElementAttribute;
 import io.cucumber.datatable.DataTable;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import net.serenitybdd.screenplay.ensure.Ensure;
-import questions.CriteriaApplied;
+import questions.Data;
 import questions.CurrentView;
 import questions.SelectedColumns;
 import tasks.NavigateTo;
@@ -32,14 +33,15 @@ public class EditColumnView {
     @Then("The view name should be {word}")
     public void the_new_version_should_be_saved(String newViewName) {
         theActorInTheSpotlight().wasAbleTo(
-                Ensure.that(CurrentView.getName().answeredBy(theActorInTheSpotlight())).isEqualTo(newViewName)
+                Ensure.that(CurrentView.name().answeredBy(theActorInTheSpotlight())).isEqualTo(newViewName)
         );
     }
 
     @And("The criteria should be equal to {string}")
-    public void theCriteriaShouldBeEqualToSelectedCriteria(String criteria) {
+    public void theCriteriaShouldBeEqualToSelectedCriteria(String expectedData) {
         theActorInTheSpotlight().wasAbleTo(
-                Ensure.that(CriteriaApplied.onCurrentView().answeredBy(theActorInTheSpotlight())).containsOnly(criteria)
+                EditWebElementAttribute.ofWebElement(),
+                Ensure.that(Data.ofSelectedView().answeredBy(theActorInTheSpotlight())).containsOnly(expectedData)
         );
     }
 
